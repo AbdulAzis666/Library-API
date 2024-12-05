@@ -1,6 +1,6 @@
-// const isPublic = () => (req, res, next) => {
-//   req.isPublic = true;
-//   next();
-// };
+const isPublic = () => (req,next) => {
+    req.isPublic = true;
+    next();
+};
 
-// module.exports = isPublic;
+module.exports = isPublic;

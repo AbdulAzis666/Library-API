@@ -3,4 +3,3 @@ const undefinedEndpointHandler = (req, res, next) => {
 };
 
 module.exports = undefinedEndpointHandler;
-  

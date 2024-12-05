@@ -1,6 +1,10 @@
+const { diabetesCheck } = require('../models');
+
 module.exports = {
     userRoute: require('./userRoute'),
-    userRoute: require('./bloodGlucoseRoute'),
+    bloodGlucoseRoute: require('./bloodGlucoseRoute'),
     mealRoute: require('./mealRecordRoute'),
-    notification: require('./notificationRoute')
+    notification: require('./notificationRoute'),
+    video: require('./videoRoute'),
+    diabetesCheckRoute: require('./diabetesCheckRoute')
 };

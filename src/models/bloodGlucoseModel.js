@@ -10,51 +10,6 @@ const createBloodGlucose = async (userId, glucoseValue, testType, testDate, test
     return result.rows[0];
 };
 
-// Fungsi untuk mendapatkan data kadar glukosa hari ini
-const getTodayBloodGlucose = async (userId) => {
-    const result = await pool.query(
-        `SELECT 
-        glucose_value, 
-        test_type, 
-        TO_CHAR(test_date, 'DD Month YYYY') AS formatted_date, 
-        TO_CHAR(test_time, 'HH24:MI') AS formatted_time
-        FROM blood_glucose
-        WHERE user_id = $1 AND test_date::DATE = CURRENT_DATE`,
-        [userId]
-    );
-    return result.rows;
-};
-
-// Fungsi untuk mendapatkan data kadar glukosa dalam satu minggu
-const getWeeklyBloodGlucose = async (userId) => {
-    const result = await pool.query(
-        `SELECT 
-        glucose_value, 
-        test_type, 
-        TO_CHAR(test_date, 'DD Month YYYY') AS formatted_date, 
-        TO_CHAR(test_time, 'HH24:MI') AS formatted_time
-        FROM blood_glucose
-        WHERE user_id = $1 AND test_date >= CURRENT_DATE - INTERVAL '7 days'`,
-        [userId]
-    );
-    return result.rows;
-};
-
-// Fungsi untuk mendapatkan data kadar glukosa dalam satu bulan
-const getMonthlyBloodGlucose = async (userId) => {
-    const result = await pool.query(
-        `SELECT 
-        glucose_value, 
-        test_type, 
-        TO_CHAR(test_date, 'DD Month YYYY') AS formatted_date, 
-        TO_CHAR(test_time, 'HH24:MI') AS formatted_time
-        FROM blood_glucose
-        WHERE user_id = $1 AND test_date >= CURRENT_DATE - INTERVAL '1 month'`,
-        [userId]
-    );
-    return result.rows;
-};
-
 // Fungsi untuk mendapatkan semua data kadar glukosa berdasarkan user_id
 const getAllBloodGlucoseByUserId = async (userId) => {
     const result = await pool.query(
@@ -65,7 +20,7 @@ const getAllBloodGlucoseByUserId = async (userId) => {
         TO_CHAR(test_time, 'HH24:MI') AS formatted_time
         FROM blood_glucose
         WHERE user_id = $1
-        ORDER BY test_date ASC, test_time ASC`, // Mengurutkan berdasarkan tanggal dan waktu
+        ORDER BY test_date ASC, test_time ASC`,
         [userId]
     );
     return result.rows;
@@ -96,9 +51,6 @@ const deleteBloodGlucose = async (id, userId) => {
 
 module.exports = {
     createBloodGlucose,
-    getTodayBloodGlucose,
-    getWeeklyBloodGlucose,
-    getMonthlyBloodGlucose,
     getAllBloodGlucoseByUserId,
     updateBloodGlucose,
     deleteBloodGlucose,

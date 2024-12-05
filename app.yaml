@@ -1,0 +1,14 @@
+runtime: nodejs18  # Gunakan runtime sesuai aplikasi Anda
+instance_class: F2  # Pilih kelas instance (F2 adalah kelas yang ekonomis)
+
+env_variables:  # Tambahkan variabel lingkungan untuk aplikasi Anda
+  DB_HOST: "your-database-host"
+  DB_USER: "your-database-user"
+  DB_PASSWORD: "your-database-password"
+  DB_NAME: "your-database-name"
+  PORT: "8080"  # Port standar untuk App Engine
+
+automatic_scaling:  # Konfigurasi auto-scaling
+  target_cpu_utilization: 0.65
+  min_instances: 0  # Tetap aktif walaupun tidak ada traffic
+  max_instances: 1

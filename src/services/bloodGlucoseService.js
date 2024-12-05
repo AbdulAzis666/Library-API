@@ -4,19 +4,6 @@ const createBloodGlucose = async (userId, glucoseValue, testType, testDate, test
     return await bloodGlucoseModel.createBloodGlucose(userId, glucoseValue, testType, testDate, testTime);
 };
 
-// Fungsi untuk mendapatkan data kadar glukosa hari ini
-const getTodayBloodGlucose = async (userId) => {
-    return await bloodGlucoseModel.getTodayBloodGlucose(userId);
-};
-
-const getWeeklyBloodGlucose = async (userId) => {
-    return await bloodGlucoseModel.getWeeklyBloodGlucose(userId);
-};
-
-const getMonthlyBloodGlucose = async (userId) => {
-    return await bloodGlucoseModel.getMonthlyBloodGlucose(userId);
-};
-
 // Fungsi untuk mendapatkan semua data kadar glukosa berdasarkan user_id
 const getAllBloodGlucoseByUserId = async (userId) => {
     return await bloodGlucoseModel.getAllBloodGlucoseByUserId(userId);
@@ -34,9 +21,6 @@ const deleteBloodGlucose = async (id, userId) => {
 
 module.exports = {
     createBloodGlucose,
-    getTodayBloodGlucose,
-    getWeeklyBloodGlucose,
-    getMonthlyBloodGlucose,
     getAllBloodGlucoseByUserId,
     updateBloodGlucose,
     deleteBloodGlucose,

@@ -6,6 +6,8 @@ const userRoute = require('./src/routes/userRoute');
 const bloodGlucoseRoute = require('./src/routes/bloodGlucoseRoute');
 const mealRecordRoute = require('./src/routes/mealRecordRoute');
 const notificationRoute = require('./src/routes/notificationRoute');
+const videoRoute = require('./src/routes/videoRoute');
+const diabetesCheckRoute = require('./src/routes/diabetesCheckRoute');
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -24,6 +26,8 @@ app.use('/users', userRoute);
 app.use('/blood-glucose', bloodGlucoseRoute);
 app.use('/meal-records', mealRecordRoute);
 app.use('/notifications', notificationRoute);
+app.use('/videos', videoRoute);
+app.use('/diabetes-check', diabetesCheckRoute);
 app.use(undefinedEndpointHandler);
 app.use(errorHandler);
 app.listen(PORT, () => {

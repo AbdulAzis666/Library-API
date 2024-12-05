@@ -1,13 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const { bloodGlucoseController } = require('../controllers');
+const { authenticateJwtToken } = require('../middlewares');
 
-router.post('/', bloodGlucoseController.create);
-router.get('/today/:userId', bloodGlucoseController.getToday);
-router.get('/weekly/:userId', bloodGlucoseController.getWeekly);
-router.get('/monthly/:userId', bloodGlucoseController.getMonthly);
-router.get('/all/:userId', bloodGlucoseController.getAllByUserId);
-router.put('/:id', bloodGlucoseController.update);
-router.delete('/:id', bloodGlucoseController.remove);
+router.post('/', authenticateJwtToken, bloodGlucoseController.create);
+router.get('/all/:userId', authenticateJwtToken, bloodGlucoseController.getAllByUserId);
+router.put('/:id', authenticateJwtToken, bloodGlucoseController.update);
+router.delete('/:id', authenticateJwtToken, bloodGlucoseController.remove);
 
 module.exports = router;

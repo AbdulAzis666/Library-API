@@ -1,6 +1,8 @@
 const bcrypt = require('bcrypt');
 const { userModel } = require('../models');
-//const { generateAccessToken } = require('../utils');
+const getUserById = async (userId) => {
+    return await userModel.getUserById(userId);
+};
 
 const register = async (
     name, 
@@ -23,22 +25,17 @@ const register = async (
 const login = async (email, password) => {
     const user = await userModel.getUserByEmail(email);
     if (!user) {
-        console.log('invalid email');
-
         const error = new Error('Invalid credentials');
         error.statusCode = 401;
         throw error;
     }
     const validPassword = await bcrypt.compare(password, user.password_hash);
     if (!validPassword) {
-        console.log('invalid password');
-
         const error = new Error('Invalid credentials');
         error.statusCode = 401;
         throw error;
     }
-    // const token = generateAccessToken(user.id, user.username);
-    return user;
+    return { user_id: user.user_id, name: user.name };
 };
 
 const updateUser = async (user_id, updates) => {
@@ -53,8 +50,15 @@ const updateUser = async (user_id, updates) => {
     return updatedUser;
 };
 
+const updateUserProfilePicture = async (userId, profilePictureUrl) => {
+    const updatedUser = await userModel.updateUser(userId, { profile_image_url: profilePictureUrl });
+    return updatedUser;
+};
+
 module.exports = {
     register,
     login,
     updateUser,
+    updateUserProfilePicture,
+    getUserById,
 };
