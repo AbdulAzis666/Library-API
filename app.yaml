@@ -2,10 +2,15 @@ runtime: nodejs18  # Gunakan runtime sesuai aplikasi Anda
 instance_class: F2  # Pilih kelas instance (F2 adalah kelas yang ekonomis)
 
 env_variables:  # Tambahkan variabel lingkungan untuk aplikasi Anda
-  DB_HOST: "your-database-host"
-  DB_USER: "your-database-user"
-  DB_PASSWORD: "your-database-password"
-  DB_NAME: "your-database-name"
+  DB_USERNAME: "postgres"
+  DB_PASSWORD: "1234"
+  DB_HOST: "34.101.174.74"
+  DB_PORT: "5432"
+  DB_NAME: "diabetku"
+  JWT_SECRET: "1234capstonKey"
+  GCP_PROJECT_ID: "diabetku"
+  GCP_BUCKET_NAME: "diabetku-user-data"
+  GCP_KEYFILE_PATH: "./src/configs/service-account-file.json"
   PORT: "8080"  # Port standar untuk App Engine
 
 automatic_scaling:  # Konfigurasi auto-scaling
